@@ -1,0 +1,15 @@
+# Import necessary packages and load `winequality_edited.csv`
+import matplotlib.pyplot as plt
+import pandas as pd
+%matplotlib inline
+
+df = pd.read_csv('winequality_edited.csv')
+
+# Use query to select each group and get its mean quality
+median = df['alcohol'].median()
+low = df.query('alcohol < {}'.format(median))
+high = df.query('alcohol >= {}'.format(median))
+
+mean_quality_low = low['quality'].mean()
+mean_quality_high = high['quality'].mean()
+
